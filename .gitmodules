@@ -1,25 +1,26 @@
+[submodule "FV3"]
+	path = FV3
+	url = https://github.com/SMoorthi-emc/fv3atm
+	branch = SM_Dec302019
+[submodule "NEMS"]
+	path = NEMS
+	url = https://github.com/SMoorthi-emc/NEMS-1
+	branch = SM_Dec302019
+[submodule "stochastic_physics"]
+	path = stochastic_physics
+	url = https://github.com/noaa-psd/stochastic_physics
+[submodule "FMS"]
+	path = FMS
+	url = https://github.com/NOAA-EMC/FMS
+	branch = GFS-FMS
 [submodule "CICE_SRC"]
 	path = CICE_SRC
 	url = https://github.com/SMoorthi-emc/CICE5
 	branch=SM_Oct172019
 [submodule "MOM6"]
-	path = MOM6
-	url = https://github.com/EMC-MOM6/NEMS-MOM6-FMS
-	branch = SM_Apr122019
-[submodule "FMS"]
-	path = FMS
-	url = https://github.com/NOAA-EMC/FMS
-[submodule "FV3"]
-	path = FV3
-	url = https://github.com/SMoorthi-emc/fv3atm
-	branch = SM_Nov042019
-[submodule "NEMS"]
-	path = NEMS
-	url = https://github.com/SMoorthi-emc/NEMS-1
+	url = https://github.com/Smoorthi-emc/MOM6-interface
+	branch = develop
 [submodule "WW3"]
 	path = WW3
 	url = https://github.com/SMoorthi-emc/WW3
 	branch = cplwav
-[submodule "stochastic_physics"]
-	path = stochastic_physics
-	url = https://github.com/noaa-psd/stochastic_physics
