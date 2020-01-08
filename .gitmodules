@@ -5,7 +5,7 @@
 [submodule "NEMS"]
 	path = NEMS
 	url = https://github.com/SMoorthi-emc/NEMS-1
-	branch = SM_Dec302019
+	branch = SM_Nov042019
 [submodule "stochastic_physics"]
 	path = stochastic_physics
 	url = https://github.com/noaa-psd/stochastic_physics
@@ -18,6 +18,7 @@
 	url = https://github.com/SMoorthi-emc/CICE5
 	branch=SM_Oct172019
 [submodule "MOM6"]
+	path = MOM6
 	url = https://github.com/Smoorthi-emc/MOM6-interface
 	branch = develop
 [submodule "WW3"]
