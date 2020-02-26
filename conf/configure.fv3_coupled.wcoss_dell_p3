@@ -21,10 +21,10 @@ HYDRO = N
 CCPP = N
 STATIC = N
 
-#CCPP=Y
-#HYBRID=N
-#STATIC=Y
-#SUITES=FV3_GFS_cpld_rasmgshoc
+ CCPP=Y
+ HYBRID=N
+ STATIC=Y
+ SUITES=FV3_GFS_cpld_rasmgshoc
 
 include       $(ESMFMKFILE)
 ESMF_INC    = $(ESMF_F90COMPILEPATHS)
