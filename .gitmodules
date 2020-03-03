@@ -11,8 +11,8 @@
 	url = https://github.com/noaa-psd/stochastic_physics
 [submodule "FMS"]
 	path = FMS
-	url = https://github.com/NOAA-EMC/FMS
-	branch = GFS-FMS
+	url = https://github.com/NOAA-GFDL/FMS
+	branch = 708b8d5
 [submodule "CICE_SRC"]
 	path = CICE_SRC
 	url = https://github.com/SMoorthi-emc/CICE5
