@@ -157,8 +157,16 @@ endif
 
 LDFLAGS += $(LIBS)
 
+ifeq ($(NO_INLINE_POST),Y)
+CPPDEFS += -DNO_INLINE_POST
+endif
+
 ifdef InNemsMakefile
 FFLAGS += $(ESMF_INC)
+ifeq ($(MOM6),Y)
+CPPFLAGS += -DFV3_CPLD -traditional
+else
 CPPFLAGS += -traditional
-EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS)
+endif
+EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS) $(NETCDF_LIB)
 endif

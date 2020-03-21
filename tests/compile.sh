@@ -57,7 +57,7 @@ fi
 # Configure NEMS
 cd "$PATHTR/../NEMS"
 
-COMPONENTS="FMS"
+COMPONENTS="FMS,FV3"
 if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
   COMPONENTS="$COMPONENTS,CCPP"
   # FIXME - create CCPP include directory before building FMS to avoid
@@ -68,7 +68,6 @@ if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
   mkdir -p $PATHTR/ccpp/include
 fi
 
-  COMPONENTS="$COMPONENTS,FV3"
 if [[ "${MAKE_OPT}" == *"MOM6=Y"* ]]; then
   COMPONENTS="$COMPONENTS,MOM6"
 fi

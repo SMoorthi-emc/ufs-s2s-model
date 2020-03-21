@@ -33,6 +33,12 @@ HYDRO = N
 CCPP = N
 STATIC = N
 
+#NO_INLINE_POST = Y
+#CCPP = Y
+#HYBRID = N
+#STATIC = Y
+#SUITES = FV3_GFS_cpld_rasmgshoc
+
 include       $(ESMFMKFILE)
 ESMF_INC    = $(ESMF_F90COMPILEPATHS)
 
@@ -54,7 +60,7 @@ NETCDF_INC = -I$(NETCDF_ROOT)/include
 ifneq ($(findstring netcdf/4,$(LOADEDMODULES)),)
   NETCDF_LIB += -L$(NETCDF)/lib -lnetcdff -lnetcdf
 else
-  NETCDF_LIB += -L$(NETCDF)/lib -lnetcdff -lnetcdf
+  NETCDF_LIB = -L$(NETCDF)/lib -lnetcdff -lnetcdf
 endif
 
 FPPFLAGS := -fpp -Wp,-w $(INCLUDE)
@@ -104,6 +110,10 @@ endif
 
 ifeq ($(MULTI_GASES),Y)
 CPPDEFS += -DMULTI_GASES
+endif
+
+ifeq ($(NO_INLINE_POST),Y)
+CPPDEFS += -DNO_INLINE_POST
 endif
 
 FFLAGS_OPT = -O2 -debug minimal -fp-model source -qoverride-limits -qopt-prefetch=3
@@ -180,8 +190,16 @@ endif
 
 LDFLAGS += $(LIBS)
 
+ifeq ($(NO_INLINE_POST),Y)
+CPPDEFS += -DNO_INLINE_POST
+endif
+
 ifdef InNemsMakefile
 FFLAGS += $(ESMF_INC)
+ifeq ($(MOM6),Y)
+CPPFLAGS += -DFV3_CPLD -traditional
+else
 CPPFLAGS += -traditional
+endif
 EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS) $(NETCDF_LIB)
 endif
