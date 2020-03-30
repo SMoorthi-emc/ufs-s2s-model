@@ -12,9 +12,9 @@
 # ----------------------------------------------------------------------
 # Decide the conf and modulefile names.
 
-CHOSEN_MODULE=$(BUILD_TARGET)/fv3_coupled
+CHOSEN_MODULE=$(BUILD_TARGET)/fv3
 
-CONFIGURE_NEMS_FILE=configure.fv3_coupled.$(BUILD_TARGET)
+CONFIGURE_NEMS_FILE=configure.fv3.$(BUILD_TARGET)
 
 # ----------------------------------------------------------------------
 # Exit for systems that are currently not supported

@@ -190,10 +190,6 @@ endif
 
 LDFLAGS += $(LIBS)
 
-ifeq ($(NO_INLINE_POST),Y)
-CPPDEFS += -DNO_INLINE_POST
-endif
-
 ifdef InNemsMakefile
 FFLAGS += $(ESMF_INC)
 ifeq ($(MOM6),Y)
