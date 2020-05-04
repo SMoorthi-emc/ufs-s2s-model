@@ -19,7 +19,6 @@ VERBOSE =
 OPENMP = Y
 HYDRO = N
 CCPP = N
-STATIC = N
 CUST_POST = Y
 NO_INLINE_POST =
 
@@ -152,12 +151,7 @@ ifeq ($(CCPP),Y)
   CPPDEFS += -DCCPP
   CFLAGS += -I$(PATH_CCPP)/include
   FFLAGS += -I$(PATH_CCPP)/include
-  ifeq ($(STATIC),Y)
-    CPPDEFS += -DSTATIC
-    LDFLAGS += -L$(PATH_CCPP)/lib -lccppphys -lccpp $(NCEPLIBS) -lxml2
-  else
-    LDFLAGS += -L$(PATH_CCPP)/lib -lccpp
-  endif
+  LDFLAGS += -L$(PATH_CCPP)/lib -lccppphys -lccpp $(NCEPLIBS) -lxml2
 endif
 
 ifneq ($(findstring NetCDF/4,$(LOADEDMODULES)),)
