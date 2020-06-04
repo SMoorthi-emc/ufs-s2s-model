@@ -43,18 +43,26 @@ module load jasper/1.900.1
 module load png/1.2.44
 module load z/1.2.11
 ## load modules for nceppost grib
+<<<<<<< HEAD
 module load post/8.0.5
+=======
+module load post/8.0.6
+>>>>>>> upstream/develop
 
 ##
 ## load ESMF library for above compiler / MPI combination
 ## use pre-compiled EMSF library for above compiler / MPI combination
 ##
 module use -a /scratch1/NCEPDEV/nems/emc.nemspara/soft/modulefiles
+<<<<<<< HEAD
 module load hdf5_parallel/1.10.6
 module load netcdf_parallel/4.7.4
 module load esmf/8.0.0_ParallelNetCDF
 
 #setenv NCEPLIBS /scratch2/NCEPDEV/nwprod/NCEPLIBS
+=======
+module load esmf/8.0.0
+>>>>>>> upstream/develop
 
 ##
 ## load cmake

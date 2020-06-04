@@ -54,8 +54,6 @@ module load hdf5_parallel/1.10.6
 module load netcdf_parallel/4.7.4
 module load esmf/8.0.0_ParallelNetCDF
 
-#setenv NCEPLIBS /scratch2/NCEPDEV/nwprod/NCEPLIBS
-
 ##
 ## load cmake
 ##
