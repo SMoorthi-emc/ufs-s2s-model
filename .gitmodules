@@ -24,4 +24,4 @@
 [submodule "WW3"]
 	path = WW3
 	url = https://github.com/SMoorthi-emc/WW3
-	branch = cplwav_may19
+	branch = cplwav

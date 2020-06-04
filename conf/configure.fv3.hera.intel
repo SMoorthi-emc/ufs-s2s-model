@@ -56,12 +56,13 @@ endif
 
 NETCDF_ROOT = $(NETCDF)
 INCLUDE = -I$(NETCDF_ROOT)/include
-NETCDF_INC = -I$(NETCDF_ROOT)/include
-ifneq ($(findstring netcdf/4,$(LOADEDMODULES)),)
-  NETCDF_LIB += -L$(NETCDF)/lib -lnetcdff -lnetcdf
-else
-  NETCDF_LIB = -L$(NETCDF)/lib -lnetcdff -lnetcdf
-endif
+
+#NETCDF_INC = -I$(NETCDF_ROOT)/include
+#ifneq ($(findstring netcdf/4,$(LOADEDMODULES)),)
+#  NETCDF_LIB += -L$(NETCDF)/lib -lnetcdff -lnetcdf
+#else
+#  NETCDF_LIB = -L$(NETCDF)/lib -lnetcdff -lnetcdf
+#endif
 
 FPPFLAGS := -fpp -Wp,-w $(INCLUDE)
 CFLAGS := $(INCLUDE)
@@ -133,6 +134,7 @@ FFLAGS_TEST = -O3 -debug minimal -fp-model source -qoverride-limits
 CFLAGS_TEST = -O2
 
 LDFLAGS :=
+LDFLAGS += -L$(NETCDF_ROOT)/lib -L$(HDF5)/lib
 LDFLAGS_OPENMP := -qopenmp
 LDFLAGS_VERBOSE := -Wl,-V,--verbose,-cref,-M
 
@@ -179,10 +181,16 @@ ifeq ($(CCPP),Y)
   LDFLAGS += -L$(PATH_CCPP)/lib -lccppphys -lccpp $(NCEPLIBS) -lxml2
 endif
 
+ifneq ($(findstring NetCDF/4,$(LOADEDMODULES)),)
+  LIBS += -lnetcdff -lhdf5 $(Z_LIB)
+else
+  LIBS += -lnetcdf
+endif
+
 LDFLAGS += $(LIBS)
 
 ifdef InNemsMakefile
   FFLAGS += $(ESMF_INC)
   CPPFLAGS += -DFV3_CPLD -traditional
-  EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS) $(NETCDF_LIB)
+  EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS)
 endif
