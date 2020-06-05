@@ -28,5 +28,5 @@
 	branch = cplwav_may19
 [submodule "CMEPS"]
 	path = CMEPS
-	url = https://github.com/ESCOMP/CMEPS.git
-	branch = master
+	url = https://github.com/SMoorthi-emc/CMEPS
+	branch = SM_Jun052020

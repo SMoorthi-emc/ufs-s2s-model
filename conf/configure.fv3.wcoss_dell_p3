@@ -154,6 +154,10 @@ ifeq ($(CCPP),Y)
   LDFLAGS += -L$(PATH_CCPP)/lib -lccppphys -lccpp $(NCEPLIBS) -lxml2
 endif
 
+ifeq ($(CMEPS),Y)
+  CPPDEFS += -DCMEPS
+endif
+
 ifneq ($(findstring NetCDF/4,$(LOADEDMODULES)),)
   LIBS += -lnetcdff -lhdf5 $(Z_LIB)
 else

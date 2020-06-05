@@ -91,17 +91,20 @@ if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
   mkdir -p $PATHTR/ccpp/include
 fi
 
-if [[ "${MAKE_OPT}" == *"MOM6=Y"* ]]; then
+if [[ "${MAKE_OPT}" == *"MOM6=Y"* ]] ; then
   COMPONENTS="$COMPONENTS,MOM6"
 fi
-if [[ "${MAKE_OPT}" == *"CICE=Y"* ]]; then
+if [[ "${MAKE_OPT}" == *"CICE=Y"* ]] ; then
   COMPONENTS="$COMPONENTS,CICE"
 fi
-if [[ "${MAKE_OPT}" == *"WW3=Y"* ]]; then
+if [[ "${MAKE_OPT}" == *"CMEPS=Y"* ]] ; then
+  COMPONENTS="$COMPONENTS,CMEPS"
+fi
+if [[ "${MAKE_OPT}" == *"WW3=Y"* ]]   ; then
   COMPONENTS="$COMPONENTS,WW3"
 fi
 
-if [[ "${MAKE_OPT}" == *"DEBUG=Y"* ]]; then
+if [[ "${MAKE_OPT}" == *"DEBUG=Y"* ]] ; then
   export S2S_DEBUG_MODULE=true
 fi
 
@@ -122,6 +125,8 @@ elif [[ "${MAKE_OPT}" == *"DEBUG=Y"* ]]; then
   NEMS_BUILDOPT="DEBUG=Y"
 elif [[ "${MAKE_OPT}" == *"REPRO=Y"* ]]; then
   NEMS_BUILDOPT="REPRO=Y"
+elif [[ "${MAKE_OPT}" == *"CMEPS=Y"* ]]; then
+  NEMS_BUILDOPT="CMEPS=Y"
 else
   NEMS_BUILDOPT=""
 fi
