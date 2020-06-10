@@ -15,7 +15,8 @@ fi
 
 readonly PATHTR=$1
 readonly BUILD_TARGET=$2
-readonly MAKE_OPT=${3:-}
+         MAKE_OPT=${3:-}
+#readonly MAKE_OPT=${3:-}
 readonly BUILD_NAME=fv3_mom6_cice${4:+_$4}
 
 readonly clean_before=${5:-YES}
@@ -43,7 +44,8 @@ if [[ $BUILD_TARGET == cheyenne.* || $BUILD_TARGET == stampede.* ]] ; then
     MAKE_THREADS=${MAKE_THREADS:-3}
 fi
 
-MAKE_THREADS=${MAKE_THREADS:-8}
+# CMEPS component fails to build when using multiple threads, thus set to 1
+MAKE_THREADS=${MAKE_THREADS:-1}
 
 if [[ "$MAKE_THREADS" -gt 1 ]] ; then
     echo Using \$MAKE_THREADS=$MAKE_THREADS threads to build FV3 and FMS.
@@ -91,17 +93,20 @@ if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
   mkdir -p $PATHTR/ccpp/include
 fi
 
-if [[ "${MAKE_OPT}" == *"MOM6=Y"* ]] ; then
+if [[ "${MAKE_OPT}" == *"MOM6=Y"* ]]  ; then
   COMPONENTS="$COMPONENTS,MOM6"
 fi
-if [[ "${MAKE_OPT}" == *"CICE=Y"* ]] ; then
+if [[ "${MAKE_OPT}" == *"CICE=Y"* ]]  ; then
   COMPONENTS="$COMPONENTS,CICE"
 fi
-if [[ "${MAKE_OPT}" == *"CMEPS=Y"* ]] ; then
-  COMPONENTS="$COMPONENTS,CMEPS"
+if [[ "${MAKE_OPT}" == *"CICE6=Y"* ]]; then
+  COMPONENTS="$COMPONENTS,CICE6"
 fi
 if [[ "${MAKE_OPT}" == *"WW3=Y"* ]]   ; then
   COMPONENTS="$COMPONENTS,WW3"
+fi
+if [[ "${MAKE_OPT}" == *"CMEPS=Y"* ]] ; then
+  COMPONENTS="$COMPONENTS,CMEPS"
 fi
 
 if [[ "${MAKE_OPT}" == *"DEBUG=Y"* ]] ; then
@@ -125,8 +130,6 @@ elif [[ "${MAKE_OPT}" == *"DEBUG=Y"* ]]; then
   NEMS_BUILDOPT="DEBUG=Y"
 elif [[ "${MAKE_OPT}" == *"REPRO=Y"* ]]; then
   NEMS_BUILDOPT="REPRO=Y"
-elif [[ "${MAKE_OPT}" == *"CMEPS=Y"* ]]; then
-  NEMS_BUILDOPT="CMEPS=Y"
 else
   NEMS_BUILDOPT=""
 fi
@@ -143,23 +146,42 @@ if [[ "${MAKE_OPT}" == *"DEBUG=Y"* && "${MAKE_OPT}" == *"CICE=Y"* ]]; then
   CICE_MAKEOPT="DEBUG=Y"
 fi
 
+# Pass DEBUG to CICE6
+CICE6_MAKEOPT=""
+if [[ "${MAKE_OPT}" == *"DEBUG=Y"* && "${MAKE_OPT}" == *"CICE6=Y"* ]]; then
+  CICE6_MAKEOPT="DEBUG=Y"
+fi
+
+# Pass DEBUG to CMEPS
+CMEPS_MAKEOPT=""
+if [[ "${MAKE_OPT}" == *"DEBUG=Y"* && "${MAKE_OPT}" == *"CMEPS=Y"* ]]; then
+  CMEPS_MAKEOPT="DEBUG=Y"
+fi
+
+if [[ "${MAKE_OPT}" == *"CMEPS=Y"* ]]; then
+  NEMS_BUILDOPT="CMEPS=Y $NEMS_BUILDOPT"
+fi
+
 if [ $clean_before = YES ] ; then
   $gnu_make -k COMPONENTS="$COMPONENTS" TEST_BUILD_NAME="$BUILD_NAME" \
            BUILD_ENV="$BUILD_TARGET" FV3_MAKEOPT="$MAKE_OPT" \
            MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
-           NEMS_BUILDOPT="$NEMS_BUILDOPT" distclean
+           CICE6_MAKEOPT="${CICE6_MAKEOPT}" \
+           CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" distclean
 fi
 
   $gnu_make -k COMPONENTS="$COMPONENTS" TEST_BUILD_NAME="$BUILD_NAME" \
            BUILD_ENV="$BUILD_TARGET" FV3_MAKEOPT="$MAKE_OPT" \
            MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
-           NEMS_BUILDOPT="$NEMS_BUILDOPT" build
+           CICE6_MAKEOPT="${CICE6_MAKEOPT}" \
+           CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" build
 
 if [ $clean_after = YES ] ; then
   $gnu_make -k COMPONENTS="$COMPONENTS" TEST_BUILD_NAME="$BUILD_NAME" \
            BUILD_ENV="$BUILD_TARGET" FV3_MAKEOPT="$MAKE_OPT" \
            MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
-           NEMS_BUILDOPT="$NEMS_BUILDOPT" clean
+           CICE6_MAKEOPT="${CICE6_MAKEOPT}" \
+           CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" clean
 fi
 
 elapsed=$SECONDS

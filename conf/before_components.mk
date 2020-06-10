@@ -22,13 +22,6 @@ endif
 
 #$(info CHOSEN_MODULE is $(CHOSEN_MODULE))
 
-ifneq (,$(findstring INTEL16=Y,$(FV3_MAKEOPT)))
-  ifeq ($(CHOSEN_MODULE),gaea.intel/fv3)
-    override CHOSEN_MODULE=$(BUILD_TARGET)/fv3.intel-16.0.3.210
-    $(warning Overriding CHOSEN_MODULE with $(CHOSEN_MODULE) as requested per MAKEOPT)
-  endif
-endif
-
 CONFIGURE_NEMS_FILE=configure.fv3.$(BUILD_TARGET)
 
 # ----------------------------------------------------------------------
@@ -37,6 +30,7 @@ CONFIGURE_NEMS_FILE=configure.fv3.$(BUILD_TARGET)
 ifeq ($(BUILD_TARGET),cheyenne.pgi)
   $(error Model currently not supported on $(BUILD_TARGET))
 endif
+
 
 # ----------------------------------------------------------------------
 # Copy the executable and modules.nems files into the tests/ directory
