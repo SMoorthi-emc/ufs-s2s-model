@@ -15,8 +15,7 @@ fi
 
 readonly PATHTR=$1
 readonly BUILD_TARGET=$2
-         MAKE_OPT=${3:-}
-#readonly MAKE_OPT=${3:-}
+readonly MAKE_OPT=${3:-}
 readonly BUILD_NAME=fcst${4:+_$4}
 
 readonly clean_before=${5:-YES}
