@@ -13,7 +13,7 @@
 [submodule "FMS"]
 	path = FMS
 	url = https://github.com/NOAA-GFDL/FMS
-	branch = 2019.01
+	branch = 2019.01.03-release-in-progress
 [submodule "CICE_SRC"]
 	path = CICE_SRC
 	url = https://github.com/SMoorthi-emc/CICE5
