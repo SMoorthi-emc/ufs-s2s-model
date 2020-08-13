@@ -30,3 +30,6 @@
 	path = CMEPS
 	url = https://github.com/SMoorthi-emc/CMEPS
 	branch = SM_Jun052020
+[submodule "CICE6"]
+	path = CICE-interface/CICE
+	url = https://github.com/SMoorthi-emc/CICE
