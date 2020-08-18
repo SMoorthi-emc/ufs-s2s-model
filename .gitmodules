@@ -33,3 +33,4 @@
 [submodule "CICE6"]
 	path = CICE-interface/CICE
 	url = https://github.com/SMoorthi-emc/CICE
+	branch = SM_Aug132020
