@@ -43,7 +43,11 @@ module load libpng/1.2.59
 module load zlib/1.2.11
 
 # load post lib
-module load post/8.0.5
+module load post/8.0.6
+
+#module use /usrx/local/dev/modulefiles/mpi_third/ips/18.0.1/impi/18.0.1
+#module load NetCDF-parallel/4.7.4
+#module load HDF5-parallel/1.10.6
 
 module use /gpfs/dell2/emc/modeling/noscrub/emc.nemspara/soft/modulefiles
 
@@ -52,6 +56,7 @@ module use /gpfs/dell2/emc/modeling/noscrub/emc.nemspara/soft/modulefiles
  module load netcdf_parallel/4.7.4
 #module load esmf/8.1.0bs19
  module load esmf/8.0.0_ParallelNetCDF
+#module load esmf/8.1.0bs21
 
 ##
 ### load cmake
