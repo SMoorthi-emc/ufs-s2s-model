@@ -21,7 +21,7 @@
 [submodule "MOM6"]
 	path = MOM6
 	url = https://github.com/Smoorthi-emc/MOM6-interface
-	branch = SM_Jul232020
+	branch = SM_Sep152020
 [submodule "WW3"]
 	path = WW3
 	url = https://github.com/SMoorthi-emc/WW3
