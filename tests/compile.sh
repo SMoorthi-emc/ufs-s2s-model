@@ -15,7 +15,8 @@ fi
 
 readonly PATHTR=$1
 readonly BUILD_TARGET=$2
-readonly MAKE_OPT=${3:-}
+         MAKE_OPT=${3:-}
+#readonly MAKE_OPT=${3:-}
 readonly BUILD_NAME=fcst${4:+_$4}
 
 readonly clean_before=${5:-YES}
@@ -148,6 +149,7 @@ fi
 # Pass DEBUG to CICE6
 CICE6_MAKEOPT="DEBUG=N"
 if [[ "${MAKE_OPT}" == *"DEBUG=Y"* && "${MAKE_OPT}" == *"CICE6=Y"* ]]; then
+  CICE_MAKEOPT="DEBUG=Y"
   CICE6_MAKEOPT="DEBUG=Y"
 fi
 
@@ -181,8 +183,24 @@ if [ $clean_after = YES ] ; then
                MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
                CICE6_MAKEOPT="${CICE6_MAKEOPT}"                              \
                CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" clean
+
+# $gnu_make -k COMPONENTS="$COMPONENTS" TEST_BUILD_NAME="$BUILD_NAME" \
+#          BUILD_ENV="$BUILD_TARGET" FV3_MAKEOPT="$MAKE_OPT" \
+#          MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
+#          CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" distclean
+#fi
+
+# $gnu_make -k COMPONENTS="$COMPONENTS" TEST_BUILD_NAME="$BUILD_NAME" \
+#          BUILD_ENV="$BUILD_TARGET" FV3_MAKEOPT="$MAKE_OPT" \
+#          MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
+#          CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" build
+
+#if [ $clean_after = YES ] ; then
+# $gnu_make -k COMPONENTS="$COMPONENTS" TEST_BUILD_NAME="$BUILD_NAME" \
+#          BUILD_ENV="$BUILD_TARGET" FV3_MAKEOPT="$MAKE_OPT" \
+#          MOM6_MAKEOPT="${MOM6_MAKEOPT}" CICE_MAKEOPT="${CICE_MAKEOPT}" \
+#          CMEPS_MAKEOPT="${CMEPS_MAKEOPT}" NEMS_BUILDOPT="$NEMS_BUILDOPT" clean
 fi
 
 elapsed=$SECONDS
 echo "Elapsed time $elapsed seconds. Compiling ${MAKE_OPT} finished"
-

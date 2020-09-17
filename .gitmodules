@@ -6,6 +6,10 @@
 	path = NEMS
 	url = https://github.com/SMoorthi-emc/NEMS-1
 	branch = SM_Jul272020
+[submodule "FMS"]
+	path = FMS
+	url = https://github.com/NOAA-GFDL/FMS
+	branch = master
 [submodule "stochastic_physics"]
 	path = stochastic_physics
 	url = https://github.com/noaa-psd/stochastic_physics
@@ -18,10 +22,6 @@
 	path = CICE_SRC
 	url = https://github.com/SMoorthi-emc/CICE5
 	branch = SM_May212020
-[submodule "MOM6"]
-	path = MOM6
-	url = https://github.com/Smoorthi-emc/MOM6-interface
-	branch = SM_Sep152020
 [submodule "WW3"]
 	path = WW3
 	url = https://github.com/SMoorthi-emc/WW3
@@ -34,3 +34,11 @@
 	path = CICE-interface/CICE
 	url = https://github.com/SMoorthi-emc/CICE
 	branch = SM_Aug132020
+[submodule "MOM6-interface/mkmf"]
+	path = MOM6-interface/mkmf
+	url = https://github.com/Smoorthi-emc/mkmf
+	branch = SM_Jan062020
+[submodule "MOM6-interface/MOM6"]
+	path = MOM6-interface/MOM6
+	url = https://github.com/Smoorthi-emc/MOM6
+	branch = SM_Sep152020

@@ -27,6 +27,22 @@ elif [ $MACHINE_ID = wcoss_dell_p3 ]; then
   TASKS_stretch=48 ; TPN_stretch=28 ; INPES_stretch=2 ; JNPES_stretch=4
   TASKS_strnest=96 ; TPN_strnest=28 ; INPES_strnest=2 ; JNPES_strnest=4
 
+  TASKS_cpl_dflt=318; TPN_cpl_dflt=28; INPES_cpl_dflt=3; JNPES_cpl_dflt=8
+  THRD_cpl_dflt=1; WPG_cpl_dflt=6;  MPB_cpl_dflt="0 143"; APB_cpl_dflt="0 149"
+  OPB_cpl_dflt="150 269"; IPB_cpl_dflt="270 317"
+
+  TASKS_cpl_thrd=246; TPN_cpl_thrd=14; INPES_cpl_thrd=3; JNPES_cpl_thrd=4
+  THRD_cpl_thrd=2; WPG_cpl_thrd=6;  MPB_cpl_thrd="0 77";  APB_cpl_thrd="0 77"
+  OPB_cpl_thrd="78 197";  IPB_cpl_thrd="198 245"
+
+  TASKS_cpl_bmrk=480; TPN_cpl_bmrk=28; INPES_cpl_bmrk=6; JNPES_cpl_bmrk=8
+  THRD_cpl_bmrk=1; WPG_cpl_bmrk=24; MPB_cpl_bmrk="0 287"; APB_cpl_bmrk="0 311"
+  OPB_cpl_bmrk="312 431"; IPB_cpl_bmrk="432 479"
+
+  TASKS_cpl_wwav=520; TPN_cpl_wwav=28; INPES_cpl_wwav=6; JNPES_cpl_wwav=8
+  THRD_cpl_wwav=1; WPG_cpl_wwav=24; MPB_cpl_wwav="0 287"; APB_cpl_wwav="0 311"
+  OPB_cpl_wwav="312 431"; IPB_cpl_wwav="432 479"; WPB_cpl_wwav="480 519"
+
 elif [[ $MACHINE_ID = orion.* ]]; then
 
   TASKS_dflt=150 ; TPN_dflt=24 ; INPES_dflt=3 ; JNPES_dflt=8
@@ -227,7 +243,8 @@ export FHCYC=24
 export DO_SPPT=.F.
 export DO_SHUM=.F.
 export DO_SKEB=.F.
-export DO_SFCPERTS=.F.
+export LNDP_TYPE=0
+export N_VAR_LNDP=0
 export SKEB=-999.
 export SPPT=-999.
 export SHUM=-999.
@@ -257,7 +274,11 @@ export ocn_petlist_bounds=$OPB_cpl_dflt
 export ice_petlist_bounds=$IPB_cpl_dflt
 
 export ATMRES='C96'
+# default ice and ocean resolution
 export OCNRES='025'
+export ICERES='0.25'
+export NX_GLB=1440
+export NY_GLB=1080
 export SUITE_NAME=''
 export MED_restart_data=''
 export INPUT_NML="input.mom6.nml.IN"
@@ -272,13 +293,16 @@ export NFHMAX_HF='-1'
 export NFHOUT_HF='-1'
 export CPLFLX='.T.'
 export CPL='.true.'
+export FRAC_GRID='.false.'
 export NSTF_NAME='0,0,0,0,0'
 export MOM6_RESTART_SETTING='n'
 export med_model="nems"
 export atm_model="fv3"
 export ocn_model="mom6"
-export ice_model="cice"
+export ice_model="cice6"
 export wav_model="ww3"
+export cap_dbug_flag="0"
+export use_coldstart="true"
 # MOM6 river runoff 
 export MOM6_RIVER_RUNOFF='True'
 # set USE_LA_LI2016 to the current default; this must be set False for restart repro 
@@ -289,7 +313,7 @@ export NPROC_ICE='48'
 export DT_ATMOS='900' #needed for C96 cases
 export DT_DYNAM_MOM6='900'
 export DT_THERM_MOM6='1800'
-export MOM_INPUT=MOM_input_template
+export MOM_INPUT=MOM_input_template_025
 export mom6_restart_option='nhours'
 export mom6_restart_n='24' 
 # defaults for CICE runtype and restart writing
@@ -297,6 +321,14 @@ export RUNTYPE='initial'
 export DUMPFREQ='d' 
 export DUMPFREQ_N='35' 
 export USE_RESTART_TIME='.false.'
+# set false for CICE6
+export RESTART_EXT='.false'
+# resolution dependent files
+export MESHICE="mesh.mx${OCNRES}.nc"
+export CICEGRID="grid_cice_NEMS_mx${OCNRES}.nc"
+export CICEMASK="kmtu_cice_NEMS_mx${OCNRES}.nc"
+export CHLCLIM="seawifs-clim-1997-2010.${NX_GLB}x${NY_GLB}.v20180328.nc"
+export FRUNOFF="runoff.daitren.clim.${NX_GLB}x${NY_GLB}.v20180328.nc"
 # setting to true will allow Frazil FW and Salt to be
 # included in fluxes sent to ocean
 export FRAZIL_FWSALT='.true.'
@@ -311,8 +343,13 @@ export NA_INIT='1'
 export EXTERNAL_IC='.T.'
 export NGGPS_IC='.T.'
 export MOUNTAIN='.F.'
-# default mediator component (NEMS mediator)
-export MEDCOMP=''
+export CPLMODE='nems_orig'
 export RESTART_PREFIX=''
 export RESTART_SUFFIX=''
+}
+export_35d_run ()
+{
+export CNTL_DIR=""
+export CNTLMED_DIR=""
+export LIST_FILES=""
 }

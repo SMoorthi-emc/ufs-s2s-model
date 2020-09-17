@@ -33,6 +33,9 @@ HYDRO = N
 CCPP = N
 CUST_POST = Y
 NO_INLINE_POST =
+STATIC = N
+QUAD_PRECISION = Y
+MULTI_GASES = N
 
 include       $(ESMFMKFILE)
 ESMF_INC    = $(ESMF_F90COMPILEPATHS)
@@ -43,7 +46,7 @@ ifeq ($(CUST_POST),Y)
 endif
 
 NEMSIOINC = -I$(NEMSIO_INC)
-NCEPLIBS = $(POST_LIB) $(NEMSIO_LIB) $(G2_LIB4) $(G2TMPL_LIB) $(BACIO_LIB4) $(SP_LIBd) $(W3EMC_LIBd) $(W3NCO_LIBd) $(CRTM_LIB) $(PNG_LIB) $(JASPER_LIB) $(Z_LIB)
+NCEPLIBS = $(POST_LIB) $(NEMSIO_LIB) $(G2_LIB4) $(G2TMPL_LIB) $(BACIO_LIB4) $(SP_LIBd) $(W3EMC_LIBd) $(W3NCO_LIBd) $(CRTM_LIB) $(JASPER_LIB) -lpng -lz
 
 ##############################################
 # Need to use at least GNU Make version 3.81 #
@@ -111,6 +114,10 @@ endif
 
 ifeq ($(NO_INLINE_POST),Y)
   CPPDEFS += -DNO_INLINE_POST
+endif
+
+ifeq ($(QUAD_PRECISION),Y)
+CPPDEFS += -DENABLE_QUAD_PRECISION
 endif
 
 FFLAGS_OPT = -O2 -debug minimal -fp-model source -qoverride-limits -qopt-prefetch=3
@@ -197,4 +204,6 @@ ifdef InNemsMakefile
   FFLAGS += $(ESMF_INC)
   CPPFLAGS += -DFV3_CPLD -traditional
   EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS)
+#CPPFLAGS += -traditional
+#EXTLIBS = $(NCEPLIBS) $(ESMF_LIB) $(LDFLAGS) $(NETCDF_LIB)
 endif
