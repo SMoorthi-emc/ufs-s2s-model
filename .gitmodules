@@ -5,7 +5,7 @@
 [submodule "NEMS"]
 	path = NEMS
 	url = https://github.com/SMoorthi-emc/NEMS-1
-	branch = SM_Jul272020
+	branch = SM_Sep172020
 [submodule "FMS"]
 	path = FMS
 	url = https://github.com/NOAA-GFDL/FMS
@@ -25,11 +25,11 @@
 [submodule "CMEPS"]
 	path = CMEPS
 	url = https://github.com/SMoorthi-emc/CMEPS
-	branch = SM_Aug252020
+	branch = SM_Sep302020
 [submodule "CICE6"]
 	path = CICE-interface/CICE
 	url = https://github.com/SMoorthi-emc/CICE
-	branch = SM_Aug132020
+	branch = SM_Sep172020
 [submodule "MOM6-interface/mkmf"]
 	path = MOM6-interface/mkmf
 	url = https://github.com/SMoorthi-emc/mkmf
