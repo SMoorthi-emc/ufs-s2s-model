@@ -118,13 +118,13 @@ export FV3_RESTART_INTERVAL=${FHMAX}
 export NEMS_CONFIGURE="nems.configure.medcmeps_atm_ocn_ice_wav.IN"
 export coupling_interval_slow_sec=${CPL_SLOW}
 export coupling_interval_fast_sec=${CPL_FAST}
+export MOM_INPUT=MOM_input_wave_template_${OCNRES}
 
 export FV3_RUN=cpld_fv3_mom6_cice_ww3_bmark_rt_run.IN
 export INPUT_NML=input.benchmark_ccpp.nml.IN
 
 export FIELD_TABLE="field_table.gfdlmp"
 export SUITE_NAME="FV3_GFS_v15p2_coupled"
-export MED_restart_data='MEDIATOR_bmwav_ccpp_cmeps'
 
 export OZ_PHYS_NEW=".T."
 
