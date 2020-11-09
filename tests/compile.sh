@@ -82,7 +82,7 @@ if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
     SUITES=$( echo $MAKE_OPT | sed 's/.* SUITES=//' | sed 's/ .*//' )
   fi
   echo "Compiling suites ${SUITES}"
-  MAKE_OPT="${MAKE_OPT} SUITES=${SUITES}"
+# MAKE_OPT="${MAKE_OPT} SUITES=${SUITES}"
   set -ex
 
   # FIXME - create CCPP include directory before building FMS to avoid
