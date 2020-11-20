@@ -47,5 +47,5 @@ module load netcdf_parallel/4.7.4.release
 module load esmf/8.1.0bs27
 #module load esmf/8.1.0bs33
 
-setenv POST_INC /scratch1/NCEPDEV/global/Shrinivas.Moorthi/save/postdir/EMC_post/sorc/ncep_post.fd/incmod/post_4
-setenv POST_LIB /scratch1/NCEPDEV/global/Shrinivas.Moorthi/save/postdir/EMC_post/sorc/ncep_post.fd/libnceppost.a
+setenv UPP_INC /scratch1/NCEPDEV/global/Shrinivas.Moorthi/save/postdir/EMC_post/sorc/ncep_post.fd/incmod/post_4
+setenv UPP_LIB /scratch1/NCEPDEV/global/Shrinivas.Moorthi/save/postdir/EMC_post/sorc/ncep_post.fd/libnceppost.a

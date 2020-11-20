@@ -44,6 +44,6 @@ module load sp/2.3.3
 module load w3emc/2.7.3
 module load w3nco/2.4.1
 
-setenv POST_INC /gpfs/dell2/emc/modeling/noscrub/Shrinivas.Moorthi/postdir_mar24/EMC_post/sorc/ncep_post.fd/incmod/post_4
-setenv POST_LIB /gpfs/dell2/emc/modeling/noscrub/Shrinivas.Moorthi/postdir_mar24/EMC_post/sorc/ncep_post.fd/libnceppost.a
+setenv UPP_INC /gpfs/dell2/emc/modeling/noscrub/Shrinivas.Moorthi/postdir_mar24/EMC_post/sorc/ncep_post.fd/incmod/post_4
+setenv UPP_LIB /gpfs/dell2/emc/modeling/noscrub/Shrinivas.Moorthi/postdir_mar24/EMC_post/sorc/ncep_post.fd/libnceppost.a
 
