@@ -72,7 +72,8 @@ if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
     SDFS=(../FV3/ccpp/suites/*.xml)
     SUITES=""
     for sdf in ${SDFS[@]}; do
-      suite=${sdf#"../FV3/ccpp/suites/suite_"}
+#     suite=${sdf#"../FV3/ccpp/suites/suite_"}
+      suite=${sdf#"../ccpp/suites/suite_"}
       suite=${suite%".xml"}
       SUITES="${SUITES},${suite}"
     done
