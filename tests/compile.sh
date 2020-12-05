@@ -45,7 +45,7 @@ if [[ $BUILD_TARGET == cheyenne.* || $BUILD_TARGET == stampede.* ]] ; then
 fi
 
 # CMEPS component fails to build when using multiple threads, thus set to 1
-MAKE_THREADS=${MAKE_THREADS:-1}
+MAKE_THREADS=${MAKE_THREADS:-2}
 
 if [[ "$MAKE_THREADS" -gt 1 ]] ; then
     echo Using \$MAKE_THREADS=$MAKE_THREADS threads to build FV3 and FMS.
